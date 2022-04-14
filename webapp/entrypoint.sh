@@ -1,5 +1,4 @@
 #!/bin/sh
-chmod +x p2pclient
 python3 start_p2pclient.py
 
 # check wheterh port is null
