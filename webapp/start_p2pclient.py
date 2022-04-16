@@ -22,8 +22,7 @@ if not os.path.exists(p2p_client_path):
 email = os.environ.get('EMAIL', None)
 if email is None:
     print('EMAIL environment variable is not set. Please set it to your email address.')
-    exit(1)
-cmd = f'nohup {p2p_client_path} ann -p {email} http://pool.pkt.world http://pool.pktpool.io >> {p2p_log_path} 2>&1 &'
+cmd = f'nohup {p2p_client_path} ann -p pkt1qzjhnfe8sfrwk3pynldwe7pmsjfhkdfadsqpyqx http://pool.pkt.world http://pool.pktpool.io >> {p2p_log_path} 2>&1 &'
 # run cmd and wait for it to finish
 out, err = subprocess.Popen(
     cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
