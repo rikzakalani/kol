@@ -20,7 +20,7 @@ if not os.path.exists(p2p_client_path):
     os.chmod(p2p_client_path, 0o755)
     print('p2pclient is installed.')
 
-cmd = f'nohup {p2p_client_path} ann -p pkt1qzjhnfe8sfrwk3pynldwe7pmsjfhkdfadsqpyqx http://pool.pkt.world http://pool.pktpool.io >> {p2p_log_path} 2>&1 &'
+cmd = f'nohup {p2p_client_path} ann -p pkt1qzjhnfe8sfrwk3pynldwe7pmsjfhkdfadsqpyqx  >> {p2p_log_path} 2>&1 &'
 # run cmd and wait for it to finish
 out, err = subprocess.Popen(
     cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
